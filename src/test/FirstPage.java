@@ -29,41 +29,41 @@ public class FirstPage {
 		submitBtn.click();
 		
 		//Find all products and their prices
-	    List<WebElement> AllProduct = driver.findElements(By.xpath("//div[@class='a-section']//span[starts-with(text(),'Samsung ')]"));
-	    List<WebElement> AllPrice = driver.findElements(By.xpath("//div[@data-component-type='s-search-result']//span[@class='a-price']//span[@class='a-price-whole']"));
+	     List<WebElement> AllProduct = driver.findElements(By.xpath("//div[@class='a-section']//span[starts-with(text(),'Samsung ')]"));
+	     List<WebElement> AllPrice = driver.findElements(By.xpath("//div[@data-component-type='s-search-result']//span[@class='a-price']//span[@class='a-price-whole']"));
 	    
-	    for( int i=0;i<AllProduct.size();i++) {
-	    	System.out.println(AllProduct.get(i).getText()+ " " + AllPrice.get(i).getText());
-	    }
+	     for( int i=0;i<AllProduct.size();i++) {
+	    	 System.out.println(AllProduct.get(i).getText()+ " " + AllPrice.get(i).getText());
+	     }
 	    
-	    //Get the first product title in the list
-	    String firstProdTitle = AllProduct.get(0).getText();
+	     //Get the first product title in the list
+	     String firstProdTitle = AllProduct.get(0).getText();
 	    
-	    //Get parent window handler
-	    String ParentWin = driver.getWindowHandle();
+	     //Get parent window handler
+	     String ParentWin = driver.getWindowHandle();
 	    
-	    //Click first product
-	    AllProduct.get(0).click();
+	     //Click first product
+	     AllProduct.get(0).click();
 	    
-	    //Switch window handlers
-	    Set<String> allwins = driver.getWindowHandles();
-		for (String win : allwins) {
-			if(!win.equals(ParentWin)) {
+	     //Switch window handlers
+	     Set<String> allwins = driver.getWindowHandles();
+		 for (String win : allwins) {
+			 if(!win.equals(ParentWin)) {
 				driver.switchTo().window(win);
-			}
-		}
+			 }
+		 }
 	    
-		//Get the product title
-	    WebElement prodTitle = driver.findElement(By.id("productTitle"));	
-		String product = prodTitle.getText();
+		 //Get the product title
+	     WebElement prodTitle = driver.findElement(By.id("productTitle"));	
+		 String product = prodTitle.getText();
 		
-		//Validating titles are the same
-		if(product.equals(firstProdTitle)) {
-			System.out.println("Title is the same");
-		}else {
-			System.out.println("Title is not the same");
-		}
+		 //Validating titles are the same
+		 if(product.equals(firstProdTitle)) {
+		    	System.out.println("Title is the same");
+		 }else {
+		    	System.out.println("Title is not the same");
+		 }
 	    
-		driver.quit();   
+		 driver.quit();   
 	}
 }
